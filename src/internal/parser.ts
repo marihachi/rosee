@@ -84,7 +84,7 @@ interface TypeTable {
 	italicUnder: M.NodeType<'italic'>,
 	strikeTag: M.NodeType<'strike'> | string,
 	strikeWave: M.NodeType<'strike'> | string,
-	unicodeEmoji: M.NodeType<'unicodeEmoji'>,
+	unicodeEmoji: M.NodeType<'unicodeEmoji'> | string,
 	plainTag: M.NodeType<'plain'>,
 	fn: M.NodeType<'fn'> | string,
 	inlineCode: M.NodeType<'inlineCode'>,
@@ -460,7 +460,7 @@ export const language = P.createLanguage<TypeTable>({
 		const emoji = RegExp(twemojiRegex.source);
 		return P.regexp(emoji).map(content => {
 			// 異体字セレクタ(U+FE0F)の場合は文字として返す
-			return content === '\uFE0F' ? M.TEXT(content) : M.UNI_EMOJI(content);
+			return content === '\uFE0F' ? content : M.UNI_EMOJI(content);
 		});
 	},
 

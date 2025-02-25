@@ -52,7 +52,7 @@ describe('SimpleParser', () => {
 
 		test('Ignore Variation Selector preceded by Unicode Emoji', () => {
 			const input = '\uFE0F';
-			const output = [TEXT('')];
+			const output = [TEXT('\uFE0F')];
 			assert.deepStrictEqual(mfm.parseSimple(input), output);
 		})
 	});
